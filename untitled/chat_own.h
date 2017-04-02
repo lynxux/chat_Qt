@@ -5,6 +5,7 @@
 #include <QTcpSocket>
 #include <QNetworkInterface>
 #include <QMessageBox>
+#include "per_chat.h"
 
 namespace Ui {
 class chat_own;
@@ -35,10 +36,10 @@ private:
     Ui::chat_own *ui;
     QTcpSocket *tcpsocket;
     QString ip;
-    QStringList tm;
+    QStringList tm,sm;
     QByteArray ipname;
-
-
+    per_chat *person_chat;
+    int flag = 0;
 
 };
 

@@ -41,10 +41,10 @@ void Server::newConnectSlot()
     //QStringList te = t.split('%');
     QString IPP = clientConnection->peerAddress().toString();
     //QByteArray tt = clientConnection->readAll();
-    QString Name(tt);
+    //QString Name(tt);
     //tmp.append(clientConnection->peerAddress().toString());
     //qDebug()<<IPP<<Name;
-    tmp.append(Name +':'+ IPP);
+    tmp.append(IPP);
     tmp.append("上线了！");
     ui->textEdit->append(tmp);
 
@@ -74,11 +74,28 @@ void Server::readClient()
 
         list();  //调用函数，发送给客户端消息，形成在线列表
     }
+    else if(str[0]=='&')
+    {
+        QString tmptmp(str); //复制字符串
+        ipname = tmptmp.split("&&");  //以&&分割
+        p_his_ip.append(ipname.at(1));
+        p_my_ip.append(ipname.at(3));
+
+        for(int i = 0; i < userList.count(); i++)
+        {
+            //userList.at(i)->write(str);
+            //if(userList.at(i)->peerAddress().toString()==p_his_ip||userList.at(i)->peerAddress().toString()==p_my_ip)
+            //{
+                userList.at(i)->write(str);
+            //}
+        }
+
+    }
     else
     {
         for(int i = 0; i < userList.count(); i++)
         {
-                 userList.at(i)->write(str);
+            userList.at(i)->write(str);
         }
     }
 
@@ -133,7 +150,7 @@ void Server::list()
         //qDebug()<<"msg "+msg;
          for(int k = 0; k <ipss.count(); k++){
              if( userList.at(i)->peerAddress().toString()== ipss.at(k)){
-                 msg.append("-------");
+                 msg.append("\n");
                  msg.append(namess.at(k));
                  //qDebug()<<"msg "+msg;
                  break;

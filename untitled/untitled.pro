@@ -26,8 +26,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        chat_own.cpp
+        chat_own.cpp \
+    per_chat.cpp
 
-HEADERS  += chat_own.h
+HEADERS  += chat_own.h \
+    per_chat.h
 
-FORMS    += chat_own.ui
+FORMS    += chat_own.ui \
+    per_chat.ui

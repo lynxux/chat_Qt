@@ -33,6 +33,7 @@ private:
     QTcpServer *tcpServer;
     QString ip;
     QString ips,names; //存储单个ip地址和用户名
+    QString p_my_ip,p_his_ip;
     QStringList ipname,ipss,namess;  //存储多个ip地址和用户名，发给客户端形成在线列表
     QList < QTcpSocket *> userList;
     QTcpSocket *clientConnection;
